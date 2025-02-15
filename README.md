@@ -8,7 +8,10 @@ that returns CRUD operations over a simple MySQL Database.
 
 TBD.
 
-## Credits
+## Credits / Resources
+
+[Youtube video - using HTMX and Templates](https://youtu.be/F9H6vYelYyU?si=bsuryJR0LBrq7lqZ)
+[Youtube video - Go, HTMX, Templ for Dynamic sites](https://www.youtube.com/watch?v=mzR0BcKg2cI&t=962s)
 
 ## Thanks
 
