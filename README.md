@@ -1,7 +1,9 @@
 # Welcome to frontapi-core
 This repo contains the frontend component part of a simple fullstack API.
 
-As an overview, this frontend intends to communicate to a [backend API]()
+The idea for this frontend is to use templates for HTML content, so the output changes upon user click on specific buttons made on HTML. Planned stack uses Golang as main server/operational language, HTMX for managing the displayed content and Tailwind CSS for Styles-related changes. For this project, form will be prioritized over esthetics.
+
+As an overview, this frontend intends to communicate to a [backend API](https://github.com/Akirapearl/backend-core)
 that returns CRUD operations over a simple MySQL Database.
 
 ## Entire API Diagram - Front & Backend

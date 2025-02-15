@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <!-- Your existing button group -->
+    <div class="flex w-full mb-4">
+        <button class="flex-1 bg-green-500 text-white py-2 px-4 rounded-l hover:bg-green-600">Create</button>
+        <button class="flex-1 bg-green-500 text-white py-2 px-4 hover:bg-green-600">Read</button>
+        <button class="flex-1 bg-green-500 text-white py-2 px-4 hover:bg-green-600">Update</button>
+        <button class="flex-1 bg-green-500 text-white py-2 px-4 rounded-r hover:bg-green-600">Delete</button>
+    </div>
 
     {{ range .Discs }}
-        <p>{{ .Title  }}   -   {{ .Group }}</p>
+        <p class="mb-2">{{ .Title }} - {{ .Group }}</p>
     {{ end }}
 </body>
 </html>
