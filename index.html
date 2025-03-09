@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+        <title>Document</title>
+    </head>
 <body>
-    <!-- Your existing button group -->
-    <div class="flex w-full mb-4">
-        <button class="flex-1 bg-green-500 text-white py-2 px-4 rounded-l hover:bg-green-600">Create</button>
-        <button class="flex-1 bg-green-500 text-white py-2 px-4 hover:bg-green-600">Read</button>
-        <button class="flex-1 bg-green-500 text-white py-2 px-4 hover:bg-green-600">Update</button>
-        <button class="flex-1 bg-green-500 text-white py-2 px-4 rounded-r hover:bg-green-600">Delete</button>
+    <button class="flex-1 bg-green-500 text-white py-2 px-4 hover:bg-green-600" 
+            hx-get="/read/" 
+            hx-target="#discs-container">
+        Read
+    </button>
+    
+    <div id="discs-container">
+        {{ template "discs-partial" . }}
     </div>
-
-    {{ range .Discs }}
-        <p class="mb-2">{{ .Title }} - {{ .Group }}</p>
-    {{ end }}
 </body>
 </html>
+
+{{ define "discs-partial" }}
+    {{ if .Discs }}
+        {{ range .Discs }}
+            <div>{{ .Title }} by {{ .Group }}</div>
+        {{ end }}
+    {{ else }}
+        <div>No discs to display. Click "Read" to load.</div>
+    {{ end }}
+{{ end }}

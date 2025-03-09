@@ -14,35 +14,31 @@ type Disc struct {
 
 func main() {
 	fmt.Println("Hi")
-
-	handler1 := func(w http.ResponseWriter, r *http.Request) {
+	// Initial page load
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("index.html"))
-		/*
-			dsks := map[string][]Disc{
+		// Initial data (empty or nil)
+		tmpl.Execute(w, nil)
+	})
 
-				"Discs": {
-					{Title: "From Zero", Group: "Linkin Park"},
-					{Title: "Scoring the End of the World", Group: "Motionless in White"},
-				},
-			}
-		*/
-		booling := false
-		//TestContent(booling)
-		tmpl.Execute(w, TestContent(booling))
-	}
-	http.HandleFunc("/", handler1)
+	// Handler for HTMX read request
+	http.HandleFunc("/read/", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("index.html"))
+		// Fetch data (replace with database call)
+		data := getDiscsFromDB()
+		// Render only the partial template
+		tmpl.ExecuteTemplate(w, "discs-partial", data)
+	})
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func TestContent(isTrue bool) map[string][]Disc {
-	if isTrue {
-		return map[string][]Disc{
-			"Discs": {
-				{Title: "From Zero", Group: "Linkin Park"},
-				{Title: "Scoring the End of the World", Group: "Motionless in White"},
-			},
-		}
+// Simulate database fetch
+func getDiscsFromDB() map[string][]Disc {
+	return map[string][]Disc{
+		"Discs": {
+			{Title: "From Zero", Group: "Linkin Park"},
+			{Title: "Scoring the End of the World", Group: "Motionless in White"},
+		},
 	}
-
-	return nil
 }
