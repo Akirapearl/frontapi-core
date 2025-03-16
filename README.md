@@ -17,5 +17,18 @@ that returns CRUD operations over a simple MySQL Database.
 [Youtube video - Go, HTMX, Templ for Dynamic sites](https://www.youtube.com/watch?v=mzR0BcKg2cI&t=962s)
 
 [Online AI App - Diagram Creator](https://app.eraser.io/new)
+
+[Mastering HTML templates in Go - The fundamentals](https://philipptanlak.com/mastering-html-templates-in-go-the-fundamentals/)
+
+[GoWebExamples - html/template section](https://gowebexamples.com/templates/)
+
+[Golang's docs for html/template](https://pkg.go.dev/html/template)
+
+[Creating Templates with Golang's html/template package](https://coderscratchpad.com/creating-templates-with-golangs-html-template-package/#Basic_Template_Syntax)
+
+
+
 ## Thanks
+
+- Golang Community's Discord
 
