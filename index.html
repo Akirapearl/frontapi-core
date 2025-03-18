@@ -8,19 +8,37 @@
         <title>Document</title>
     </head>
 <body>
-    <button class="flex-1 bg-green-500 text-white py-2 px-4 hover:bg-green-600" 
+
+    <button class="flex-1 shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+    hx-get="/create/" 
+    hx-target="#discs-create">
+        Create
+    </button>
+    <button class="flex-1 shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
             hx-get="/read/" 
             hx-target="#discs-container">
         Read
     </button>
+
     
     <div id="discs-container">
         {{ template "discs-partial" . }}
+    </div>
+
+    <div id="discs-create">
+        <!-- https://htmx.org/examples/reset-user-input/ -->
+        <form hx-post=""
+        hx-target="" 
+        hx-swap="afterbegin"
+        hx-on::after-request="if(event.detail.successful) this.reset()">
+        {{ template "create" . }}
+        </form>
     </div>
 </body>
 </html>
 
 {{ define "discs-partial" }}
+<!-- if discs and no other CRUD method is active -->
     {{ if .Discs }}
         {{ range .Discs }}
             <div>{{ .Title }} by {{ .Group }}</div>
@@ -28,4 +46,16 @@
     {{ else }}
         <div>No discs to display. Click "Read" to load.</div>
     {{ end }}
+{{ end }}
+
+{{ define "create" }}
+    <label for="inputcreate">Data input: </label><br>
+   <!-- <input type="text" id="inputcreate" name="inputcreate"><br>
+-->
+    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inputcreate" type="text">
+
+    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+        Send
+      </button>
+
 {{ end }}
