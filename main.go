@@ -30,6 +30,12 @@ func main() {
 		tmpl.ExecuteTemplate(w, "discs-partial", data)
 	})
 
+	http.HandleFunc("/create/", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("index.html"))
+		// Render only the partial template
+		tmpl.ExecuteTemplate(w, "create", r)
+	})
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
